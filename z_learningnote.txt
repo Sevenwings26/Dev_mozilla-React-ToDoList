@@ -1,0 +1,17 @@
+to install vite
+npm create vite@latest foldernane -- --template react
+cd foldernane && npm install
+
+to open server 
+npm run dev -- --open --port 3000
+
+to customize the above 
+
+# Move into the src directory
+cd src
+# Delete the App.css file and the React logo provided by Vite
+rm App.css assets/react.svg
+# Empty the contents of App.jsx and index.css
+echo -n > App.jsx && echo -n > index.css
+# Move back up to the root of the project
+cd ..
