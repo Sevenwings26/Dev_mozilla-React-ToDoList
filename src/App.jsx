@@ -7,12 +7,10 @@ import { nanoid } from "nanoid"
 
 // Using Functional State
 function App(props) {
-
   function addTask(name) {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
     setTasks([...tasks, newTask]);
   }
-
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map((task) => {
@@ -27,7 +25,12 @@ function App(props) {
     setTasks(updatedTasks);
   }
 
-  
+  // delete Task 
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter((task) => id !== task.id);
+    setTasks(remainingTasks);
+  }
+
   // to avoid repitition - variable to be called later
   const [tasks, setTasks] = useState(props.tasks);
   const taskList = tasks?.map((task) => (
@@ -37,6 +40,7 @@ function App(props) {
       completed={task.completed}
       key={task.id}
       toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask = {deleteTask}
     />
   ));
 
@@ -59,7 +63,6 @@ function App(props) {
         aria-labelledby="list-heading"
       >
         {taskList}
-        {/* Repititive  */}
       </ul>
     </div>
   );
